@@ -1,0 +1,62 @@
+/*右边宽度固定，左边自适应*/
+<style>
+    div {
+        height: 200px;
+    }
+    .left {
+        float: right;
+        width: 200px;
+        background-color: rebeccapurple;
+    }
+    .right {
+        margin-right: 200px;
+        background-color: red;
+    }
+</style>
+<body>
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+
+
+
+/*实现多列等高布局*/
+<style>
+	.Article{
+	  overflow: hidden;
+	}
+
+	.Article>li{
+	  float: left;
+	  margin: 0 10px -9999px 0;
+	  padding-bottom: 9999px;
+	  background: #4577dc;
+	  width: 200px;
+	  color: #fff;
+	}
+
+	.Article>li>p{
+	  padding: 10px;
+	}
+
+</style>
+<body>
+	<ul class="Article">
+	    <li class="js-equalheight">
+	    	<p>
+			      一家将客户利益置于首位的经纪商，
+			      为客户提供专业的交易工具一家将客户利益置于首位的经纪商，
+			      为客户提供专业的交易工具一家将客户利益置于首位的经纪商，
+			      为客户提供专业的交易工具一家将客户利益置于首位的经纪商，为客户提供专业的交易工具
+	    	</p>
+	    </li>
+	    <li class="js-equalheight">
+	      <p>一家将客户利益置于首位的经纪商，为客户提供专业的交易工具
+	      	一家将客户利益置于首位的经纪商，为客户提供专业的交易工具
+	      </p>
+	    </li>
+	    <li class="js-equalheight">
+	      <p>一家将客户利益置于首位的经纪商</p>
+	    </li>
+  </ul>
+</body>
