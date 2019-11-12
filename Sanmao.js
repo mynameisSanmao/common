@@ -8,7 +8,7 @@ console.log(Object.prototype.toString.call(undefined)) //[object Undefined]
 console.log(Object.prototype.toString.call(true)) //[object Boolean]
 console.log(Object.prototype.toString.call({})) //[object Object]
 console.log(Object.prototype.toString.call([])) //[object Array]
-console.log(Object.prototype.toString.call(function() {})) //[object Function]
+console.log(Object.prototype.toString.call(function () {})) //[object Function]
 
 /*判断是否为函数*/
 function isFunction(it) {
@@ -24,10 +24,10 @@ function isArray(o) {
  * 
  */
 function arrayEqual(arr1, arr2) {
-	if(arr1 === arr2) return true;
-	if(arr1.length != arr2.length) return false;
-	for(var i = 0; i < arr1.length; ++i) {
-		if(arr1[i] !== arr2[i]) return false;
+	if (arr1 === arr2) return true;
+	if (arr1.length != arr2.length) return false;
+	for (var i = 0; i < arr1.length; ++i) {
+		if (arr1[i] !== arr2[i]) return false;
 	}
 	return true;
 }
@@ -39,7 +39,7 @@ function arrayEqual(arr1, arr2) {
  * @return {Boolean}
  */
 function isEmptyObject(obj) {
-	if(!obj || typeof obj !== 'object' || Array.isArray(obj))
+	if (!obj || typeof obj !== 'object' || Array.isArray(obj))
 		return false
 	return !Object.keys(obj).length
 }
@@ -55,20 +55,59 @@ console.log(arr1); //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 //[2, "12", 12, 1, 6, 13]
 //es6的新特性
 
-//json按某个字段排序
-var objs = [
-	{id:2,name:'sanmao'},
-	{id:4,name:'jiangdan'},
-	{id:1,name:'zhibu'},
-	{id:9,name:'abc'}
-]
-    	
-function compare(property){
-    return function(a,b){
-        var value1 = a[property];
-        var value2 = b[property];
-        return value1 - value2;
-    }
+
+
+/**
+ * @desc json按某个字段排序
+ * @param {*} property 
+ * @return {Object}
+ */
+function compare(property) {
+	return function (a, b) {
+		var value1 = a[property];
+		var value2 = b[property];
+		return value1 - value2;
+	}
 }
+var objs = [{
+		id: 2,
+		name: 'sanmao'
+	},
+	{
+		id: 4,
+		name: 'jiangdan'
+	},
+	{
+		id: 1,
+		name: 'zhibu'
+	},
+	{
+		id: 9,
+		name: 'abc'
+	}
+]
 console.log(objs.sort(compare('id'))); //按id字段排序
 
+
+/**
+ * defaultData与selectData对比，若defaultData与selectData中的key相同，则把selectData对应的key和value赋值给defaultData；
+ * 若defaultData中的key，selectData不存在，则保留defaultData中的key和value
+ */
+const defaultData = {
+	isSelect: false,
+	type: "basic-user",
+	userInfo: "",
+	eg: 1
+};
+const selectData = {
+	isSelect: false,
+	type: "basic-user",
+	userInfo: "program",
+	name: 'sanmao'
+}
+Object.keys(defaultData).forEach(key => {
+	if (selectData.hasOwnProperty(key)) {
+		defaultData[key] = selectData[key];
+	}
+});
+console.log(defaultData) // { isSelect: false, type: "basic-user", userInfo: "program" ,eg:1};
