@@ -55,6 +55,24 @@ console.log(arr1); //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 //[2, "12", 12, 1, 6, 13]
 //es6的新特性
 
+/**
+ * @desc 数组对象按照id去重
+ * @param {Array} list 
+ * @return {Array}
+ */
+function objquchong(list){
+	var result  = [];
+	var obj = {};
+	for (var i = 0; i < list.length; i ++) {
+		if(!obj[list[i].id]){
+			result.push(list[i]);
+			obj[list[i].id] = true;
+		}
+	}
+	return result
+}
+var list = [{id:1,name:'a'},{id:2,name:'b'},{id:1,name:'c'},{id:3,name:'d'}]
+console.log(objquchong(list));// [{id:2,name:'b'},{id:3,name:'d'}]
 
 
 /**
