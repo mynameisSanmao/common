@@ -73,7 +73,17 @@ function objquchong(list){
 }
 var list = [{id:1,name:'a'},{id:2,name:'b'},{id:1,name:'c'},{id:3,name:'d'}]
 console.log(objquchong(list));// [{id:2,name:'b'},{id:3,name:'d'}]
-
+// const dataReducer = (prev, cur, idx) => {
+// 	let obj = {}
+// 	const { name } = cur
+// 	obj[name] = cur
+// 	return {
+// 		  ...prev,
+// 		  ...obj
+// 	}
+// }
+// const reducedData = data.reduce(dataReducer, {});
+// let newData = Object.values(reducedData);
 
 /**
  * @desc json按某个字段排序
