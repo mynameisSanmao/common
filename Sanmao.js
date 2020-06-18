@@ -1,5 +1,5 @@
 //https://juejin.im/post/5a091afe6fb9a044ff30f402
-/*函数内部arguments转换为数组*/
+/* 函数内部arguments转换为数组 */
 var args = Array.prototype.slice.call(arguments, 0);
 /*由于 JavaScript 中一切都是对象， 任何都不例外， 对所有值类型应用 Object.prototype.toString.call() 方法结果如下：*/
 console.log(Object.prototype.toString.call(123)) //[object Number]
