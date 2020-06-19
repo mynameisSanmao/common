@@ -1,4 +1,4 @@
-// Sanmao.js
+//   -Sanmao.js-   
 //https://juejin.im/post/5a091afe6fb9a044ff30f402
 /* 函数内部arguments转换为数组 */
 var args = Array.prototype.slice.call(arguments, 0);
