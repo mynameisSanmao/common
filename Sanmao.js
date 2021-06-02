@@ -117,7 +117,27 @@ var objs = [{
 ]
 console.log(objs.sort(compare('id'))); //按id字段排序
 
-
+/**
+* 对数组成员特性进行分组 Group 与 Group2 等价
+*/
+function Group(arr = [], key) {
+  return key ? arr.reduce((t, v) => (!t[v[key]] && (t[v[key]] = []), t[v[key]].push(v), t), {}) : {};
+}
+function Group2(arr = [], key) {
+	return key ? arr.reduce((t,v)=>{
+		!t[v[key]] && (t[v[key]] = []);
+		t[v[key]].push(v)
+		return t
+	},{}): {}
+}
+const arr = [
+  { area: "GZ", name: "YZW", age: 27 },
+  { area: "GZ", name: "TYJ", age: 25 },
+  { area: "SZ", name: "AAA", age: 23 },
+  { area: "FS", name: "BBB", age: 21 },
+  { area: "SZ", name: "CCC", age: 19 }
+]; // 以地区area作为分组依据
+Group(arr, "area"); // { GZ: Array(2), SZ: Array(2), FS: Array(1) }
 /**
  * defaultData与selectData对比，若defaultData与selectData中的key相同，则把selectData对应的key和value赋值给defaultData；
  * 若defaultData中的key，selectData不存在，则保留defaultData中的key和value
@@ -140,3 +160,70 @@ Object.keys(defaultData).forEach(key => {
 	}
 });
 console.log(defaultData) // { isSelect: false, type: "basic-user", userInfo: "program" ,eg:1};
+//把秒转化为 *天*小时*分钟*秒
+function formatSecToStr(seconds){
+    let daySec = 24 *  60 * 60;
+	let hourSec=  60 * 60;
+	let minuteSec=60;
+    let dd = Math.floor(seconds / daySec);
+    let hh = Math.floor((seconds % daySec) / hourSec);
+    let mm = Math.floor((seconds % hourSec) / minuteSec);
+	let ss=seconds%minuteSec;
+    if(dd > 0){
+      return dd + "天" + hh + "小时" + mm + "分钟"+ss+"秒";
+    }else if(hh > 0){
+      return hh + "小时" + mm + "分钟"+ss+"秒";
+    } else if (mm > 0){
+      return mm + "分钟"+ss+"秒";
+    }else{
+      return ss+"秒";
+    }
+}
+
+
+
+// 正则
+let reg1 = /^[a-zA-Z]+\s*?[a-zA-Z]+$/; // 首尾字母，字母中间允许有多个空格
+let reg1 = /^[A-Za-z][A-Za-z\s]*[A-Za-z]$/
+let reg2 = /^([A-Za-z]+\s?)*[A-Za-z]$/; // 首尾字母，字母中间只允许有一个空格
+let reg3 = /^[A-Za-z ]*$/; // 只能输入字母和空格
+let reg4 = /^[0-9]+([.][0-9]{1}){0,1}$/; // 只能输入一位小数
+let reg4 = /^[1-9][0-9]*0$/; // 10的倍数
+let reg5 = /(^[1-9]\d*$)/;// 正整数
+let reg6 = /^(1|([1-9]\d{0,1})|100)$/; // 1-100整数
+
+// 正则过滤违规词
+var ma = "大xx".split('');
+var regstr = ma.join('([^\u4e00-\u9fa5]*?)');
+var str = "这是一篇文章,需要过滤掉大xx这三个词,大xx中间出汉字以外的字符 大_/_傻a1v逼和 大傻a1v逼";
+var reg = new RegExp(regstr , 'g');
+str.replace(reg,"<替换的词>");
+// var data = [{ name: 1, price: 3 }, { name: 2, price: 4 }, { name: 10, price: 3 }, { name: 1, price: 5 }, { name: 10, price: 8 }];
+//   var nameArr = [];
+//   for (let i = 0, len = data.length; i < len; i++) {
+//    if (nameArr.length) {
+//     var flag = false;
+//     for (let j = 0, lens = nameArr.length; j < lens; j++) {
+//      if (data[i].name == nameArr[j].name) {
+//       flag = true;
+//       nameArr[j].arrobj.push(data[i]);
+//       break;
+//      }
+//     }
+
+//     if (flag) {
+//      continue;
+//     }
+//     nameArr.push(data[i]);
+//     nameArr.forEach(val => {
+//      if (!val.arrobj) {
+//       val.arrobj = [{ name: val.name, price: val.price }];
+//      }
+//     });
+//    } else {
+//     nameArr.push(data[i]);
+//    }
+//   }
+//   console.log(nameArr)
+
+
