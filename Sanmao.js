@@ -191,6 +191,8 @@ let reg4 = /^[0-9]+([.][0-9]{1}){0,1}$/; // 只能输入一位小数
 let reg4 = /^[1-9][0-9]*0$/; // 10的倍数
 let reg5 = /(^[1-9]\d*$)/;// 正整数
 let reg6 = /^(1|([1-9]\d{0,1})|100)$/; // 1-100整数
+let reg7 = val.replace(/^0|\D+/g, ""); // 只能输入正整数
+// /^[3-9][0-9]|100$/
 
 // 正则过滤违规词
 var ma = "大xx".split('');
@@ -225,5 +227,14 @@ str.replace(reg,"<替换的词>");
 //    }
 //   }
 //   console.log(nameArr)
-
+// 获取所有父级元素 到body截止
+function findParentDom(node,parentNode) {     
+  let result = parentNode || [];   
+  let parent = node.parentNode;     
+  if (parent === null || parent.nodeName==='BODY') {         
+    return result;     
+  } else {    
+    return findParentDom(parent, (result.concat([parent.nodeName])));
+  } 
+}
 
